@@ -11,10 +11,10 @@ export default function Flights({props})
         <>
       
       <div>
-        <p>The Flights fetched are:</p>
+        <p>The Flights fetched are</p>
         {flights.map(flight => (
           <div id = "flights" key={flight._id}>
-            {flight.flightNumber} - {flight.origin} → {flight.destination}
+            FlighNumber :{flight.flightNumber} -  Origin :{flight.origin} → Destination :{flight.destination}
           </div>
         ))}
       </div>
