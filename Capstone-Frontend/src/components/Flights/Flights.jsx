@@ -11,10 +11,10 @@ export default function Flights({props})
         <>
       
       <div>
-        <p>The Flights fetched are</p>
+        <p>Select  a Flight from the list of flights displayed</p>
         {flights.map(flight => (
           <div id = "flights" key={flight._id}>
-            FlighNumber :{flight.flightNumber} -  Origin :{flight.origin} → Destination :{flight.destination}
+            FlightNumber :{flight.flightNumber} -  Origin :{flight.origin}  Destination :{flight.destination} DepartureDate : {flight.departureDate}
           </div>
         ))}
       </div>
