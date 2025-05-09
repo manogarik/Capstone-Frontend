@@ -1,5 +1,6 @@
 import FlightSearch from "../FlightSearchForm/FlightSearch";
 import { useFlightContext } from "../../context/FlightContext.jsx";
+import { useNavigate } from "react-router-dom";
 import {React, useState} from 'react';
 
 import './Flights.css'
@@ -8,8 +9,15 @@ export default function Flights({props})
     const {flights} = useFlightContext();
     const [selectedFlightIndex, setSelectedFlightIndex] = useState(null);
     console.log(flights);
+    const nav = useNavigate();
+    const handleSubmit = () =>
+    {
+        setSelectedFlightIndex(flights[selectedFlightIndex]);
+       nav('/passengers')
+    }
     return (
         <>
+        
       
       <div>
         <p>Select  a Flight from the list of flights displayed</p>
@@ -29,7 +37,7 @@ export default function Flights({props})
       </div>
       {selectedFlightIndex !== null && (
         <div className="mt-3">
-          <button className="btn btn-success" onChange={handlesubmit}>
+          <button className="btn btn-success" onChange={handleSubmit}>
             Book Flight #{selectedFlightIndex + 1}
           </button>
         </div>
