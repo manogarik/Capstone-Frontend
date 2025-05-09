@@ -1,22 +1,24 @@
 import { useState } from 'react'
 import {Routes,Route} from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import Header from './components/Header/Header.jsx'
-import FlightSearch from './components/FlightSearchForm/FlightSearch.jsx'
+import Homepage from './components/Homepage/Homepage'
+import Flights from './components/Flights/Flights'
+import { FlightProvider } from './context/FlightContext.jsx'
 
 import './App.css'
 
 function App() {
-  const [flights,setFlights] = useState([])
+ 
 
 
   return (
     <>
     <div className='homepage-bg'>
-    <Header/>
-    <h2>Search Flights</h2>
-    <FlightSearch />
-      
+    
+      <Routes>
+        <Route path ='/' element={<Homepage/>}/>
+        <Route path ='/search' element={<Flights/>}/>
+      </Routes>
       
     </div>
     </>

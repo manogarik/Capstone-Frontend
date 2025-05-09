@@ -1,34 +1,42 @@
-import React,{ useState, useEffect} from "react";
+import React,{ useState, useEffect, useContext} from "react";
 import axios from "axios"
-import { getAirports } from "../../services/flights-api";
+import { getAirports, searchFlights } from "../../services/flights-api";
 import { useNavigate } from "react-router-dom";
+import { useFlightContext } from "../../context/FlightContext.jsx";
 import './FlightSearch.css'
-export default function FlightSearch({onSearch})
+export default function FlightSearch()
 {
     const[airports,setAirports] = useState({origins:[],destinations:[]})
     const [origin,setOrigin] = useState('');
     const [destination,setDestination] = useState('');
     const [departureDate,setDepartureDate] = useState('');
+    const { setFlights } = useFlightContext();
     const nav = useNavigate();
+
+    
 
     useEffect(()=>{
         getAirports()
         .then(res => setAirports(res.data))
     },[])
     console.log(airports);
-    const handleSubmit = async (e) => {
+
+    
+      
+    const handleSubmit = (e) => {
         e.preventDefault();
         if (origin && destination) {
-          await axios(`http://localhost:3000/flights/search?origin=${origin}&destination=${destination}`)
-            .then(res => onSearch(res.data))
+          searchFlights(origin,destination)
+            .then(res => setFlights(res.data))
             
-            
+          
         }
+        
       };
 
     return(
     <div>
-       <form onSubmit ={handleSubmit}>
+       <form onSubmit ={handleSubmit} >
         <label>
             Origin :
             <select value = {origin} onChange = {(e) => setOrigin(e.target.value)}>
@@ -57,7 +65,7 @@ export default function FlightSearch({onSearch})
         </label><br></br>
         <label>
             No.Of Tickets :
-            <input type="number" name="tickets" points="1"/>
+            <input type="number" name="tickets" points="1" required/>
         </label><br></br>
         <button onClick={()=>{nav('/search')}}>Search Flights</button>
        </form>

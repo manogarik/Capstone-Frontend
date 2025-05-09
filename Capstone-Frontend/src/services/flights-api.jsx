@@ -1,9 +1,16 @@
 import axios from 'axios'
-const baseURL = 'http://localhost:3000/flights';
+
 
 //Get Airports
 export const getAirports = async () => {
     const URL = 'http://localhost:3000/flights/airports'
+    const response = await axios.get(URL)
+    return response
+}
+
+//Fetch flights
+export const searchFlights = async(origin,destination) => {
+    const URL = `http://localhost:3000/flights/search?origin=${origin}&destination=${destination}`
     const response = await axios.get(URL)
     return response
 }
