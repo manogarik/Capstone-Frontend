@@ -8,6 +8,7 @@ export default function FlightSearch({onSearch})
     const[airports,setAirports] = useState({origins:[],destinations:[]})
     const [origin,setOrigin] = useState('');
     const [destination,setDestination] = useState('');
+    const [departureDate,setDepartureDate] = useState('');
     const nav = useNavigate();
 
     useEffect(()=>{
@@ -52,7 +53,7 @@ export default function FlightSearch({onSearch})
         </label><br></br>
         <label>
             Departure Date :
-            <input type='Date' name="Depdate" value=""/>
+            <input type='Date' name="Depdate" value={departureDate} onChange={(e)=>setDepartureDate(e.target.value)}/>
         </label><br></br>
         <label>
             No.Of Tickets :
