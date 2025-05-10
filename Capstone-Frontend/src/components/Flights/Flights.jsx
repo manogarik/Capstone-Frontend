@@ -37,7 +37,7 @@ export default function Flights({props})
       </div>
       {selectedFlightIndex !== null && (
         <div className="mt-3">
-          <button className="btn btn-success" onChange={handleSubmit}>
+          <button className="btn btn-success" onChange={handleSubmit} onClick={()=>{nav('/passengers')}}>
             Book Flight #{selectedFlightIndex + 1}
           </button>
         </div>
