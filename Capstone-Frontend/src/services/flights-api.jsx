@@ -15,4 +15,9 @@ export const searchFlights = async(origin,destination) => {
     return response
 }
 //Adding passengerdetails to flight
-export const addpassenger = async(id,)
+export const addpassenger = async(id,passengerId)=>
+{
+    const URL= `http://localhost:3000/flights/${id}/addpassenger`
+    const response = await axios.put(URL,{passengerId})
+    return response
+}

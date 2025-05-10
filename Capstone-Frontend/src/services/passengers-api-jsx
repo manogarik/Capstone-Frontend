@@ -6,3 +6,11 @@ export const createPassenger = async (passenger) => {
     const response = await axios.post(URL, passenger)
     return response
 }
+
+//function to put flightid into passengers
+export const addFlight = async(id,flightId)=>
+    {
+        const URL= `http://localhost:3000/passengers/${id}/addflight`
+        const response = await axios.put(URL,{flightId})
+        return response
+    }
