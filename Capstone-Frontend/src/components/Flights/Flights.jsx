@@ -44,6 +44,7 @@ export default function Flights({props})
                   Origin :{flight.origin}
                   Departure:{flight.departure}
                   DepartureDate: {flight.departureDate}
+                  Status : {flight.status}
                 </small>
               </span>
             </label>
@@ -60,5 +61,5 @@ export default function Flights({props})
 
       </>
     )
-    console.log(flights);
+    
 }
