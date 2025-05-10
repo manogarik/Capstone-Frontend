@@ -1,28 +1,39 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { createPassenger } from '../../services/passengers-api-jsx';
+import './Passenger.css';
 export default function Passenger()
 {
-    const AddPassenger = (e)=>
-    {
+    const AddPassenger = async (e)=>
+    {  
+        try{
         e.preventDefault();
         const passenger = {
-            firstName: e.target.name.value, 
-            color: e.target.color.value,
-            readyToEat: e.target.readyToEat.checked }
-            createPassenger(passenger).then(()=>{
-              nav('/')
+            firstName: e.target.fname.value, 
+            lastName: e.target.lname.value,
+            email:e.target.email.value,
+            age:e.target.age.value}
+            
+            createPassenger(passenger).then((res)=>{
+              console.log(res.data)
+              const passengerId = res.data._id;
+            
+             
             })
+        }catch(err){
+            console.log('Booking error')
+        }
     }
+    
     
     const nav = useNavigate();
     return (
         <>
         <div>Add a passenger</div>
-        <form onSubmit={AddPassenger}>
-          FirstName: <input type='text' name='name'></input><br/>
-          LastName: <input type='text' name='color'></input><br/>
-          Email: <input type='checkbox' name='readyToEat'></input><br/>
+        <form onSubmit={AddPassenger} className="passform">
+          FirstName: <input type='text' name='fname'></input><br/>
+          LastName: <input type='text' name='lname'></input><br/>
+          Email: <input type='email' name='email'></input><br/>
           Age : <input type='number' name='age'></input><br/>
           <input type='submit'></input>
         </form>

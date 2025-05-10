@@ -14,3 +14,5 @@ export const searchFlights = async(origin,destination) => {
     const response = await axios.get(URL)
     return response
 }
+//Adding passengerdetails to flight
+export const addpassenger = async(id,)
