@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { createPassenger } from '../../services/passengers-api-jsx';
 import { useFlightContext } from '../../context/FlightContext';
@@ -7,6 +7,7 @@ import { addpassenger } from '../../services/flights-api';
 import { addFlight } from '../../services/passengers-api-jsx';
 export default function Passenger()
 {
+    const [passengers,setPassengers] = useState([]);
     const {selectedFlight} = useFlightContext();
     const [FormData,setFormData] = useState({
         fname : '',
@@ -21,6 +22,8 @@ export default function Passenger()
             [e.target.name] : e.target.value
         })
     }
+
+    //useEffect to display passengers
    console.log("selected Flight",selectedFlight._id);
     const AddPassenger = async (e)=>
     {  
@@ -32,15 +35,19 @@ export default function Passenger()
             email:FormData.email,
             age:FormData.age}
             
+            //Post request to add a new passenger
             createPassenger(passenger).then((res)=>{
               console.log(res.data)
               const passengerId = res.data._id;
-             
+             //Add the passenger info to the flight
             addpassenger(selectedFlight._id,passengerId).then((res)=>
             {
                 console.log(res.data);
             })
+            //add to passengers state
+            setPassengers([...passengers,res.data]);
 
+            setFormData({fname:'',lname:'',email:'',age:''});
             
              
         })
@@ -48,7 +55,12 @@ export default function Passenger()
             console.log('Booking error')
         }
     }
-    
+    useEffect(() => {
+        
+        if (selectedFlight?.passengers?.length > 0) {
+          setPassengers(selectedFlight.passengers);
+        }
+      }, [selectedFlight]);
     
     const nav = useNavigate();
     return (
@@ -69,13 +81,27 @@ export default function Passenger()
             </ul>
          </div>
           <div>Add a passenger</div>
-         <form onSubmit={AddPassenger} className="passform">
+         <form className="passform">
            FirstName: <input type='text' name='fname' value ={FormData.fname} onChange ={handleChange}></input><br/>
            LastName: <input type='text' name='lname' value ={FormData.lname} onChange={handleChange}></input><br/>
            Email: <input type='email' name='email' value={FormData.email} onChange={handleChange}></input><br/>
            Age : <input type='number' name='age' value={FormData.age} onChange={handleChange}></input><br/>
-           <input type='submit'></input>
+           <div className="mt-3">
+          <button className="btn btn-success" onClick={AddPassenger} >
+            Add Passenger
+          </button>
+        </div>
          </form>
+
+         
+         <h3>Passengers for this flight</h3>
+      <ul>
+        {passengers.map((p, index) => (
+          <li key={index}>
+            {p.firstName} {p.lastName} — {p.email} (Age: {p.age})
+          </li>
+        ))}
+      </ul>
          </> 
       )
 }
