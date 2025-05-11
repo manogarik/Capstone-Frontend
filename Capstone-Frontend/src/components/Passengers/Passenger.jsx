@@ -3,9 +3,11 @@ import { useNavigate } from 'react-router-dom'
 import { createPassenger } from '../../services/passengers-api-jsx';
 import { useFlightContext } from '../../context/FlightContext';
 import './Passenger.css';
-import { addpassenger } from '../../services/flights-api';
-import { addFlight } from '../../services/passengers-api-jsx';
-import { getPassengers } from '../../services/flights-api';
+import { addpassenger,getPassengers,removepassenger } from '../../services/flights-api';
+import { addFlight ,deletePassenger} from '../../services/passengers-api-jsx';
+
+ 
+
 export default function Passenger()
 {
     const [passengers,setPassengers] = useState([]);
@@ -58,11 +60,21 @@ export default function Passenger()
     }
 
 
-    const deletePassenger = async (e)=>
+//Function to delete passenger
+
+    const handleDelete = async (passengerId)=>
     {
         try{
-            e.preventDefault();
+           const flight = removepassenger(selectedFlight._id,passengerId).then((res)=>
+            {
+                console.log('Deleted Passsenger');
+        
 
+            deletePassenger(passengerId);
+
+            setPassengers(passengers.filter(p => p._id !== passengerId));
+            console.log(passengers);
+            });
         }
         catch(error)
         {
@@ -109,9 +121,7 @@ export default function Passenger()
           <button className="btn btn-success" onClick={AddPassenger} >
             Add Passenger
           </button>
-          <button className="btn btn-success" onClick={deletePassenger} >
-            Delete Passenger
-          </button>
+         
         </div>
          </form>
 
@@ -121,6 +131,9 @@ export default function Passenger()
         {passengers.map((p, index) => (
           <li key={index}>
             {p.firstName} {p.lastName} — {p.email} (Age: {p.age})
+            <button className="btn btn-sm btn-outline-danger" onClick={() => handleDelete(p._id)}>
+            Delete Passenger
+          </button>
           </li>
         ))}
       </ul>

@@ -29,3 +29,11 @@ export const getPassengers = async (id)=>
     const response = await axios.get(URL)
     return response;
 }
+
+//remove passenger details from flight
+export const removepassenger = async(flightId,passengerId) =>
+{
+    const URL = `http://localhost:3000/flights/${flightId}/passengers/${passengerId}`
+    const response = await axios.delete(URL)
+    return response;
+}

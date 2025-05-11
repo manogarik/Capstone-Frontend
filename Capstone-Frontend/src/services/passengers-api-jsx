@@ -19,3 +19,11 @@ export const addFlight = async(id,flightId)=>
         const response = await axios.put(URL,{flightId})
         return response
     }
+
+//function to delete passenger using id
+export const deletePassenger = async(id)=>
+{
+    const URL = `http://localhost:3000/passengers/${id}`
+    const response = await axios.delete(URL)
+    return response;
+}
