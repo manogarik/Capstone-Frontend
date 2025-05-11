@@ -5,6 +5,7 @@ import { useFlightContext } from '../../context/FlightContext';
 import './Passenger.css';
 import { addpassenger } from '../../services/flights-api';
 import { addFlight } from '../../services/passengers-api-jsx';
+import { getPassengers } from '../../services/flights-api';
 export default function Passenger()
 {
     const [passengers,setPassengers] = useState([]);
@@ -55,12 +56,30 @@ export default function Passenger()
             console.log('Booking error')
         }
     }
+
+
+    const deletePassenger = async (e)=>
+    {
+        try{
+            e.preventDefault();
+
+        }
+        catch(error)
+        {
+            console.log('Booking error')
+        }
+    }
     useEffect(() => {
         
-        if (selectedFlight?.passengers?.length > 0) {
-          setPassengers(selectedFlight.passengers);
-        }
-      }, [selectedFlight]);
+        if (selectedFlight?.passengers) {
+          getPassengers(selectedFlight._id).then((res)=>{
+            console.log(res.data);
+          
+        
+          setPassengers(res.data.passengers);
+          console.log(res.data.passsengers)
+        })
+      }}, [selectedFlight]);
     
     const nav = useNavigate();
     return (
@@ -89,6 +108,9 @@ export default function Passenger()
            <div className="mt-3">
           <button className="btn btn-success" onClick={AddPassenger} >
             Add Passenger
+          </button>
+          <button className="btn btn-success" onClick={deletePassenger} >
+            Delete Passenger
           </button>
         </div>
          </form>

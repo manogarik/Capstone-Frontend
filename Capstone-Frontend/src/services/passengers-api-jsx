@@ -1,5 +1,10 @@
 import axios from 'axios'
 
+//function to get passengers
+
+
+
+
 //function to post a new passenger
 export const createPassenger = async (passenger) => {
     const URL = 'http://localhost:3000/passengers'

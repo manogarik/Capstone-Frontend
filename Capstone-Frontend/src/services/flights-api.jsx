@@ -21,3 +21,11 @@ export const addpassenger = async(id,passengerId)=>
     const response = await axios.put(URL,{passengerId})
     return response
 }
+
+//Get passengers using flightid
+export const getPassengers = async (id)=>
+{
+    const URL = `http://localhost:3000/flights/${id}`
+    const response = await axios.get(URL)
+    return response;
+}
