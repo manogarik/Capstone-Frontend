@@ -1,10 +1,14 @@
-.passform
-{
-    color:white;
-}
-div{
-    color:white;
-}
-li{
-    color:white;
-}
+.passenger-form label {
+    font-weight: 500;
+    color: #333;
+  }
+  
+  .passenger-form .form-control {
+    border-radius: 10px;
+  }
+  
+  .list-group-item {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    margin-bottom: 8px;
+  }

@@ -5,6 +5,7 @@ import { useFlightContext } from '../../context/FlightContext';
 import './Passenger.css';
 import { addpassenger,getPassengers,removepassenger } from '../../services/flights-api';
 import { addFlight ,deletePassenger} from '../../services/passengers-api-jsx';
+import Header from '../Header/Header';
 
  
 
@@ -95,48 +96,65 @@ export default function Passenger()
     
     const nav = useNavigate();
     return (
-         
-
-         <>
-         <div>
-            <h2>More details on flight</h2>
-            <ul>
-                <li><strong>Flight Number</strong>   {selectedFlight.flightNumber}</li>
-                <li><strong>Origin Airport</strong>   {selectedFlight.origin}</li>
-                <li><strong>Destination Airport</strong>   {selectedFlight.destination}</li>
-                <li><strong>Departure Date</strong>   {selectedFlight.departureDate}</li>
-                <li><strong>Departure Time</strong>   {selectedFlight.departureTime}</li>
-                <li><strong>Arrival Time</strong>   {selectedFlight.arrivalTime}</li>
-                <li><strong>Price</strong>   ${selectedFlight.price}</li>
-                <li><strong>Status</strong>   {selectedFlight.status}</li>
+        <>
+          <Header />
+          <div className="container mt-4">
+            <h2 className="text-primary mb-4">Flight Details</h2>
+            <ul className="list-group mb-4">
+              <li className="list-group-item"><strong>Flight Number:</strong> {selectedFlight.flightNumber}</li>
+              <li className="list-group-item"><strong>Origin:</strong> {selectedFlight.origin}</li>
+              <li className="list-group-item"><strong>Destination:</strong> {selectedFlight.destination}</li>
+              <li className="list-group-item"><strong>Departure Date:</strong> {selectedFlight.departureDate}</li>
+              <li className="list-group-item"><strong>Departure Time:</strong> {selectedFlight.departureTime}</li>
+              <li className="list-group-item"><strong>Arrival Time:</strong> {selectedFlight.arrivalTime}</li>
+              <li className="list-group-item"><strong>Price:</strong> ${selectedFlight.price}</li>
+              <li className="list-group-item"><strong>Status:</strong> {selectedFlight.status}</li>
             </ul>
-         </div>
-          <div>Add a passenger</div>
-         <form className="passform">
-           FirstName: <input type='text' name='fname' value ={FormData.fname} onChange ={handleChange}></input><br/>
-           LastName: <input type='text' name='lname' value ={FormData.lname} onChange={handleChange}></input><br/>
-           Email: <input type='email' name='email' value={FormData.email} onChange={handleChange}></input><br/>
-           Age : <input type='number' name='age' value={FormData.age} onChange={handleChange}></input><br/>
-           <div className="mt-3">
-          <button className="btn btn-success" onClick={AddPassenger} >
-            Add Passenger
-          </button>
-         
-        </div>
-         </form>
-
-         
-         <h3>Passengers for this flight</h3>
-      <ul>
-        {passengers.map((p, index) => (
-          <li key={index}>
-            {p.firstName} {p.lastName} — {p.email} (Age: {p.age})
-            <button className="btn btn-sm btn-outline-danger" onClick={() => handleDelete(p._id)}>
-            Delete Passenger
-          </button>
-          </li>
-        ))}
-      </ul>
-         </> 
-      )
-}
+    
+            <h4 className="text-success mb-3">Add a Passenger</h4>
+            <form className="row g-3 passenger-form" onSubmit={AddPassenger}>
+              <div className="col-md-6">
+                <label className="form-label">First Name</label>
+                <input type="text" className="form-control" name="fname" value={FormData.fname} onChange={handleChange} required />
+              </div>
+              <div className="col-md-6">
+                <label className="form-label">Last Name</label>
+                <input type="text" className="form-control" name="lname" value={FormData.lname} onChange={handleChange} required />
+              </div>
+              <div className="col-md-6">
+                <label className="form-label">Email</label>
+                <input type="email" className="form-control" name="email" value={FormData.email} onChange={handleChange} required />
+              </div>
+              <div className="col-md-6">
+                <label className="form-label">Age</label>
+                <input type="number" className="form-control" name="age" value={FormData.age} onChange={handleChange} required />
+              </div>
+              <div className="col-12 text-center">
+                <button className="btn btn-success mt-3">Add Passenger</button>
+              </div>
+            </form>
+    
+            <h4 className="mt-5">Passengers List</h4>
+            <ul className="list-group mb-4">
+              {passengers.map((p, index) => (
+                <li key={index} className="list-group-item d-flex justify-content-between align-items-center">
+                  <div>
+                    {p.firstName} {p.lastName} — {p.email} (Age: {p.age})
+                  </div>
+                  <button className="btn btn-sm btn-outline-danger" onClick={() => handleDelete(p._id)}>
+                    Delete
+                  </button>
+                </li>
+              ))}
+            </ul>
+    
+            {passengers.length > 0 && (
+              <div className="text-center">
+                <button className="btn btn-primary">Confirm Booking</button>
+              </div>
+            )}
+          </div>
+        </>
+      );
+    }
+    
