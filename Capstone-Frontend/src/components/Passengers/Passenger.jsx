@@ -90,7 +90,7 @@ export default function Passenger()
           
         
           setPassengers(res.data.passengers);
-          console.log(res.data.passsengers)
+          console.log(res.data.passengers)
         })
       }}, [selectedFlight]);
     
@@ -150,7 +150,7 @@ export default function Passenger()
     
             {passengers.length > 0 && (
               <div className="text-center">
-                <button className="btn btn-primary" onClick={()=> {nav('/confirmation')}}>Confirm Booking</button>
+                <button className="btn btn-success" onClick={()=> {nav('/confirmation')}}>Confirm Booking</button>
               </div>
             )}
           </div>
