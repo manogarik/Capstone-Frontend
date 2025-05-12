@@ -150,7 +150,7 @@ export default function Passenger()
     
             {passengers.length > 0 && (
               <div className="text-center">
-                <button className="btn btn-primary">Confirm Booking</button>
+                <button className="btn btn-primary" onClick={()=> {nav('/confirmation')}}>Confirm Booking</button>
               </div>
             )}
           </div>
