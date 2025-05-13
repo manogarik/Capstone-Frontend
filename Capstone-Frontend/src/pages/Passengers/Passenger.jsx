@@ -5,7 +5,7 @@ import { useFlightContext } from '../../context/FlightContext';
 import './Passenger.css';
 import { addpassenger,getPassengers,removepassenger } from '../../services/flights-api';
 import { addFlight ,deletePassenger} from '../../services/passengers-api-jsx';
-import Header from '../Header/Header';
+import Header from '../../components/Header/Header';
 
  
 

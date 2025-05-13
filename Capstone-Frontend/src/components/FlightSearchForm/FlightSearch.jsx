@@ -20,40 +20,48 @@ export default function FlightSearch() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    const today = new Date();
+    const selectedDate = new Date(departureDate);
+    const formattedSelectedDate = selectedDate.toISOString().split('T')[0];
     //validating origin and destination
     if (origin && destination) {
         if(origin === destination)
         {
             setError('Origin and Destination cannot be the same');
         }
-        const today = new Date();
-        const selectedDate = new Date(departureDate);
-        if(selectedDate < today)
+        
+        else if(selectedDate < today)
         {
             setError('Departure Date must be in the future')
             
         }
         else
-        {
+        { 
+            try{
             searchFlights(origin, destination).then(res => {
-                setFlights(res.data);
+                const flights = res.data;
+               const filtered_flights = flights.filter((flight)=>
+            {
+                const flight_date = new Date(flight.departureDate).toISOString().split('T')[0];
+                return formattedSelectedDate === flight_date
+            })
+            console.log(filtered_flights);
+                setFlights({
+                    match : filtered_flights,
+                    available : flights});
                 setError('');
                 nav('/search'); 
 
         } 
-      );
+      )}
+      catch(error)
+      {
+        setError('Error fetching flights, Try Again')
+      }
     }
   }
 
-  //validating departure date
-//   console.log(new Date());
-//   const today = new Date();
-//   const selectedDate = new Date(departureDate);
-//   if(selectedDate < today.setHours(0,0,0,0))
-//  {
-//     setError('Departure Date must be in the future')
-//  }
+  
 };
 
   return (

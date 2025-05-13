@@ -5,7 +5,7 @@ const FlightContext = createContext();
 
 
 export const FlightProvider = ({ children }) => {
-  const [flights, setFlights] = useState([]);
+  const [flights, setFlights] = useState({match :[],available:[]});
   const [selectedFlight,setSelectedFlight] = useState(null)
 
   return (

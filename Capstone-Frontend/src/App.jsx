@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import {Routes,Route} from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import Homepage from './components/Homepage/Homepage'
-import Flights from './components/Flights/Flights'
-import Passenger from './components/Passengers/Passenger.jsx'
+import Homepage from './pages/Homepage/Homepage.jsx'
+import Flights from './pages/Flights/Flights.jsx'
+import Passenger from './pages/Passengers/Passenger.jsx'
 import Confirm from './components/Confirm/Confirm.jsx'
 import { FlightProvider } from './context/FlightContext.jsx'
 

@@ -1,6 +1,6 @@
-import FlightSearch from "../FlightSearchForm/FlightSearch";
+import FlightSearch from "../../components/FlightSearchForm/FlightSearch";
 import React, {useState} from 'react';
-import Header from "../Header/Header";
+import Header from "../../components/Header/Header";
 export default function Homepage()
 {
    
