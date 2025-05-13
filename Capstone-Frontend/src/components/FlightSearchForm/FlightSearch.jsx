@@ -10,6 +10,7 @@ export default function FlightSearch() {
   const [origin, setOrigin] = useState('');
   const [destination, setDestination] = useState('');
   const [departureDate, setDepartureDate] = useState('');
+  const [error,setError] = useState('');
   const { setFlights } = useFlightContext();
   const nav = useNavigate();
 
@@ -19,13 +20,41 @@ export default function FlightSearch() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    //validating origin and destination
     if (origin && destination) {
-      searchFlights(origin, destination).then(res => {
-        setFlights(res.data);
-        nav('/search'); // Navigate after search
-      });
+        if(origin === destination)
+        {
+            setError('Origin and Destination cannot be the same');
+        }
+        const today = new Date();
+        const selectedDate = new Date(departureDate);
+        if(selectedDate < today)
+        {
+            setError('Departure Date must be in the future')
+            
+        }
+        else
+        {
+            searchFlights(origin, destination).then(res => {
+                setFlights(res.data);
+                setError('');
+                nav('/search'); 
+
+        } 
+      );
     }
-  };
+  }
+
+  //validating departure date
+//   console.log(new Date());
+//   const today = new Date();
+//   const selectedDate = new Date(departureDate);
+//   if(selectedDate < today.setHours(0,0,0,0))
+//  {
+//     setError('Departure Date must be in the future')
+//  }
+};
 
   return (
     <>
@@ -64,10 +93,15 @@ export default function FlightSearch() {
               <input type="number" className="form-control" min="1" name="tickets" required />
             </div>
 
+            {error && (
+  <div className="alert alert-danger mt-3" role="alert">
+    {error}
+  </div>
+)}
             <button type="submit" className="btn btn-primary w-100">Search Flights</button>
           </form>
         </div>
       </div>
     </>
   );
-}
+  }
