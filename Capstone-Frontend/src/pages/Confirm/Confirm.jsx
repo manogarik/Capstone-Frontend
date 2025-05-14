@@ -49,10 +49,7 @@ export default function Confirm(){
             
              
                 {/* //BUTTON TO RETURN TO HOME PAGE */}
-                 <div className="text-center home">
-                <button className="btn btn-success" onClick={()=> nav('/')}>Home</button>
-              </div>
-           
+                
              </div>
            </>
          );

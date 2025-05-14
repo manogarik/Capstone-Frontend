@@ -39,11 +39,11 @@ export default function Passenger()
             email:FormData.email,
             age:FormData.age}
             
-            //Post request to add a new passenger
+            //Post request to add a new passenger to the passengers model
             createPassenger(passenger).then((res)=>{
               console.log(res.data)
               const passengerId = res.data._id;
-             //Add the passenger info to the flight
+             //Add the passenger info to the flight - PUT Request to update passengers info
             addpassenger(selectedFlight._id,passengerId).then((res)=>
             {
                 console.log(res.data);
