@@ -18,10 +18,10 @@ export default function Header(){
           <Link className="nav-link" to="/">Search Flights</Link>
         </li>
         <li className="nav-item">
-          <Link className="nav-link" to="/bookings">My Bookings</Link>
+          <Link className="nav-link" to="">My Bookings</Link>
         </li>
         <li className="nav-item">
-          <Link className="nav-link" to="/admin">SignUp/Login</Link>
+          <Link className="nav-link" to="">SignUp/Login</Link>
         </li>
       </ul>
     </div>

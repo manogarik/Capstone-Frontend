@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import Homepage from './pages/Homepage/Homepage.jsx'
 import Flights from './pages/Flights/Flights.jsx'
 import Passenger from './pages/Passengers/Passenger.jsx'
-import Confirm from './components/Confirm/Confirm.jsx'
+import Confirm from './pages/Confirm/Confirm.jsx'
 import { FlightProvider } from './context/FlightContext.jsx'
 
 import './App.css'
