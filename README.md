@@ -24,7 +24,7 @@ This backend application provides RESTful APIs for the Reservation System, enabl
 ```
 frontend/
 ├── public/
-|      |--Flight.jpg
+|       |--Flight.jpg
 ├── src/
 │   ├── components/
 │   │   ├── Header
