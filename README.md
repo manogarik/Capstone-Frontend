@@ -83,4 +83,4 @@ frontend/
 + Protect sensitive data like booking history and passenger details
 
 ##### Filter flights by price
-+ We can have a filter option that can give us flights thare cheapest.
++ We can have a filter option that can compare the price of the flights.
