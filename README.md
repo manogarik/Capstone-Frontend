@@ -79,5 +79,8 @@ frontend/
 ##### Add User Authentication
 
 
-+ User Authentication can be done, which helps to keep track of reservations done by one user.
-+ The project can be enhanced by setting up a model for reservations. This will store the reservations done by a user.
++ User Authentication helps users to create personal accounts to manage their bookings.
++ Protect sensitive data like booking history and passenger details
+
+##### Filter flights by price
++ We can have a filter option that can give us flights thare cheapest.
