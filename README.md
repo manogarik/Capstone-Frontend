@@ -59,3 +59,25 @@ frontend/
 ├── package.json
 └── README.md
 ```
+
+#### ⚙️ Setup Instructions
+
+1. **Navigate to the directory**
+   ```
+   cd Capstone-FrontEnd
+   ```
+2. **Install Dependencies**
+   ```
+   npm install 
+   ```
+3. **Start the server**
+   ```
+   npm run dev
+   ```
+
+#### 🔐 Future Work
+##### Add User Authentication
+
+
++ User Authentication can be done, which helps to keep track of reservations done by one user.
++ The project can be enhanced by setting up a model for reservations. This will store the reservations done by a user.
