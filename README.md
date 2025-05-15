@@ -19,4 +19,43 @@ This backend application provides RESTful APIs for the Reservation System, enabl
 
 ![Bootstrap](https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white)
 
+### 📁 Project Structure
 
+```
+frontend/
+├── public/
+|      |--Flight.jpg
+├── src/
+│   ├── components/
+│   │   ├── Header
+|   |   |     |__Header.jsx
+|   |   |     |__Header.css
+|   |   |     
+│   │   ├── FlightSearchForm
+│   │         |__FlightSearch.jsx
+|   |         |__FlightSearch.css
+│   │   
+│   ├── pages/
+│   │   ├── Homepage
+|   |   |     |__Homepage.jsx
+|   |   |     |__Homepage.css
+│   │   |
+|   |   |__ Flights
+|   |   |     |__Flights.jsx
+|   |   |     |__Flights.css
+|   |   |
+|   |   |__ Passengers
+|   |   |     |__Passenger.jsx
+|   |   |     |__Passenger.css
+|   |   |
+|   |   |__ Confirm
+|   |          |__Confirm.jsx
+|   |         |__Confirm.css
+|   |
+|   |
+│   ├── App.jsx
+│   └── index.mjs
+|
+├── package.json
+└── README.md
+```
